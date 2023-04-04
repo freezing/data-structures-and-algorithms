@@ -11,7 +11,7 @@ public:
 
   void enqueue(const T& element) {
     if (size_ >= capacity_) {
-      throw std::runtime_error("Failed to enqueue an element because the queue is full.");
+      expand();
     }
     array_[tail_index_] = element;
     tail_index_ = (tail_index_ + 1) % capacity_;
@@ -24,6 +24,9 @@ public:
     }
     size_--;
     head_index_ = (head_index_ + 1) % capacity_;
+    if (size_ < capacity_ / 2) {
+      shrink();
+    }
   }
 
   int size() const {
@@ -54,4 +57,32 @@ private:
   int head_index_{0};
   int tail_index_{0};
   T* array_;
+
+  void expand() {
+    change_array_capacity(capacity_ * 2);
+  }
+
+  void shrink() {
+    change_array_capacity(capacity_ / 2);
+  }
+
+  void change_array_capacity(int new_capacity) {
+    T* new_array = new T[new_capacity];
+    if (head_index_ < tail_index_) {
+      move(array_, head_index_, tail_index_, new_array, 0);
+    } else {
+      move(array_, head_index_, capacity_, new_array, 0);
+      move(array_, 0, tail_index_, new_array, capacity_ - head_index_);
+    }
+    delete array_;
+
+    array_ = new_array;
+    capacity_ = new_capacity;
+    head_index_ = 0;
+    tail_index_ = size_;
+  }
+
+  void move(T* src, int start, int end, T* dst, int offset) {
+    memcpy(dst + offset, src + start, (end - start) * sizeof(T));
+  }
 };
