@@ -24,7 +24,7 @@ public:
     }
     size_--;
     head_index_ = (head_index_ + 1) % capacity_;
-    if (size_ < capacity_ / 2) {
+    if (size_ < capacity_ / 3) {
       shrink();
     }
   }

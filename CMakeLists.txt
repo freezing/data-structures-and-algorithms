@@ -29,3 +29,4 @@ endmacro()
 include(GoogleTest)
 
 add_gtest(QueueTest queue_test.cpp)
+add_gtest(StackTest stack_test.cpp)
