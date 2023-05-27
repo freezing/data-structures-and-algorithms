@@ -30,3 +30,5 @@ include(GoogleTest)
 
 add_gtest(QueueTest queue_test.cpp)
 add_gtest(StackTest stack_test.cpp)
+add_gtest(ClosedAddressingHashMapTest closed_addressing_hash_map_test.cpp)
+add_gtest(OpenAddressingHashMapTest open_addressing_hash_map_test.cpp)
