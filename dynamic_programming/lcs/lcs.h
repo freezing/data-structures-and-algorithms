@@ -2,8 +2,9 @@
 
 #include <vector>
 
-std::vector<std::vector<int>> lcs_table(const std::vector<int> &a,
-                                        const std::vector<int> &b) {
+template <typename T>
+std::vector<std::vector<int>> lcs_table(const std::vector<T> &a,
+                                        const std::vector<T> &b) {
   std::vector<std::vector<int>> dp(a.size() + 1,
                                    std::vector<int>(b.size() + 1, 0));
   for (int i = 1; i <= a.size(); i++) {
@@ -18,15 +19,17 @@ std::vector<std::vector<int>> lcs_table(const std::vector<int> &a,
   return dp;
 }
 
-int longest_common_subsequence(const std::vector<int> &a,
-                               const std::vector<int> &b) {
+template <typename T>
+int longest_common_subsequence(const std::vector<T> &a,
+                               const std::vector<T> &b) {
   return lcs_table(a, b)[a.size()][b.size()];
 }
 
-std::vector<int> reconstruct_elements(const std::vector<std::vector<int>> &dp,
-                                      const std::vector<int> &a,
-                                      const std::vector<int> &b) {
-  std::vector<int> elements{};
+template <typename T>
+std::vector<T> reconstruct_elements(const std::vector<std::vector<int>> &dp,
+                                    const std::vector<T> &a,
+                                    const std::vector<T> &b) {
+  std::vector<T> elements{};
   int n = a.size();
   int m = b.size();
   while (n > 0 && m > 0) {
