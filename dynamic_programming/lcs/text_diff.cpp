@@ -31,6 +31,6 @@ int main(int argc, char *argv[]) {
   std::vector<std::string> file_a = read_file(argv[1]);
   std::vector<std::string> file_b = read_file(argv[2]);
 
-  print_diff(file_a, file_b);
+  print_differences(file_a, file_b);
   return 0;
 }
