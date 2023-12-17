@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
 
 template <typename T>
 std::vector<std::vector<int>> lcs_table(const std::vector<T> &a,

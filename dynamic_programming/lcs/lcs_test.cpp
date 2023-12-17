@@ -65,3 +65,11 @@ TEST(ReconstructLcs, Same) {
   std::vector<int> elements = reconstruct_elements(lcs, a, b);
   ASSERT_THAT(elements, ElementsAre(1, 2, 3, 4, 5));
 }
+
+TEST(ReconstructLcs, MultipleSolutions) {
+    std::vector<int> a{1, 2, 3, 4, 5};
+    std::vector<int> b{1, 3, 2, 4, 5};
+    auto lcs = lcs_table(a, b);
+    std::vector<int> elements = reconstruct_elements(lcs, a, b);
+    ASSERT_THAT(elements, ElementsAre(1, 3, 4, 5));
+}
